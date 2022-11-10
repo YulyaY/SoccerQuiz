@@ -1,7 +1,9 @@
 package com.example.soccerquiz
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.*
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
@@ -11,6 +13,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.soccerquiz.databinding.FragmentQuizBinding
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class QuizFragment : Fragment() {
@@ -92,18 +96,33 @@ class QuizFragment : Fragment() {
 
                     } else {
 
-                        // Go to goalFragment
-                        view.findNavController().navigate(R.id.action_quizFragment_to_goalFragment)
+                        binding.ballImageView.animate().translationXBy(800f).rotation(1800f)
+                            .duration = 2000
+
+//                        Timer("myTimer", false).schedule(2000){
+//                            // Go to goalFragment
+//                            view.findNavController().navigate(R.id.action_quizFragment_to_goalFragment)
+//                        }
+
+                        Handler().postDelayed({
+                            view.findNavController().navigate(R.id.action_quizFragment_to_goalFragment)
+                        }, 2000)
 
                     }
                 } else {
 
-                    // Go to missFragment
-                    view.findNavController().navigate(R.id.action_quizFragment_to_missFragment)
+                    binding.ballImageView.animate().translationXBy(800f).rotation(1800f)
+                        .duration = 2000
 
+//                    Timer("myTimer", false).schedule(2000){
+//                        // Go to missFragment
+//                        view.findNavController().navigate(R.id.action_quizFragment_to_missFragment)
+//                    }
+
+                    Handler().postDelayed({
+                        view.findNavController().navigate(R.id.action_quizFragment_to_missFragment)
+                    }, 2000)
                 }
-
-
             }
 
         }
